@@ -12,8 +12,6 @@ scale_x: .double 0.1
 scale_y: .double 0.1
 offset_x: .double -2.0
 offset_y: .double -1.0
-zero: .double 0.0
-max_magnitude: .double 4.0
 
 .text
 .global _start
@@ -32,10 +30,10 @@ mandelbrot:
     mov x4, 0
 
     // d4 = scale_x, d5 = scale_y, d6 = offset_x, d7 = offset_y
-    ldr d4, =scale_x
-    ldr d5, =scale_y
-    ldr d6, =offset_x
-    ldr d7, =offset_y
+    fmov d4, #1.0// scale_x
+    fmov d5, #1.0// scale_y
+    fmov d6, #-2.0// =offset_x
+    fmov d7, #-1.0// =offset_y
 
 mandelbrot_loop:
     // if (x3 >= height) mandelbrot_done();
@@ -56,8 +54,8 @@ mandelbrot_loop:
     fadd d1, d1, d7
 
     // d2 = 0.0, d3 = 0.0, w5=0
-    ldr d2, =zero
-    ldr d3, =zero
+    fmov d2, xzr
+    fmov d3, xzr
     mov w5, #0
 
 mandelbrot_iter:
@@ -81,7 +79,7 @@ mandelbrot_iter:
     fadd d10, d10, d11
 
     // if (magnitude > 4.0) { mandelbrot_plot_star(); }
-    ldr d11, =max_magnitude
+    fmov d11, #4.0
     fcmp d10, d11
     bgt mandelbrot_plot_star
 
