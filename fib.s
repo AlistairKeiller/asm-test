@@ -1,20 +1,9 @@
 .data
-msg:
-    .ascii  "Hello, ARM64!\n"
-len = . - msg
-
 buffer: .space 12  // Buffer to store the Fibonacci result as a string
 
 .text
 .global _start
 _start:
-    // write(1, &msg, len)
-    mov     x0, #1         // stdout file descriptor
-    ldr     x1, =msg       // address of msg
-    ldr     x2, =len       // length of msg
-    mov     w8, #64        // syscall: write
-    svc     #0             // make syscall
-
     // fib(10)
     mov     x0, #10        // Argument for fib(10)
     bl      fib            // Call fib
