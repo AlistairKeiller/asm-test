@@ -30,20 +30,16 @@ mandelbrot:
     mov x4, 0
 
     // d4 = scale_x, d5 = scale_y, d6 = offset_x, d7 = offset_y
-    adrp x9, scale_x
-    add  x9, x9, :lo12:scale_x
+    ldr  x9, =scale_x
     ldr  d4, [x9]
 
-    adrp x10, scale_y
-    add  x10, x10, :lo12:scale_y
+    ldr  x10, =scale_y
     ldr  d5, [x10]
 
-    adrp x11, offset_x
-    add  x11, x11, :lo12:offset_x
+    ldr  x11, =offset_x
     ldr  d6, [x11]
 
-    adrp x12, offset_y
-    add  x12, x12, :lo12:offset_y
+    ldr  x12, =offset_y
     ldr  d7, [x12]
 
 
