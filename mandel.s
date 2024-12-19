@@ -11,6 +11,7 @@ scale_x: .double 0.03
 scale_y: .double 0.1
 offset_x: .double -2.0
 offset_y: .double -1.0
+zero: .double 0.0
 
 .text
 .global _start
@@ -24,12 +25,15 @@ _start:
     svc     #0
 
 mandelbrot:
-    mov x3, 0 // current_height
-    mov x4, 0 // current_width
-    ldr d4, =scale_x            // Load scale_x into d4
-    ldr d5, =scale_y            // Load scale_y into d5
-    ldr d6, =offset_x           // Load offset_x into d6
-    ldr d7, =offset_y           // Load offset_y into d7
+    // x3 = 0, x4 = 0
+    mov x3, 0
+    mov x4, 0
+
+    // d4 = scale_x, d5 = scale_y, d6 = offset_x, d7 = offset_y
+    ldr d4, =scale_x
+    ldr d5, =scale_y
+    ldr d6, =offset_x
+    ldr d7, =offset_y
 mandelbrot_loop:
     // if (x3 >= height) mandelbrot_done();
     cmp x3, height
@@ -39,9 +43,6 @@ mandelbrot_loop:
     cmp x4, width
     bge mandelbrot_next_line
 
-    // render
-    b mandelbrot_render
-mandelbrot_render:
     // d0 = (double)x4 * scale_x + offset_x
     // d1 = (double)x3 * scale_y + offset_y
     scvtf d0, x4
@@ -51,11 +52,10 @@ mandelbrot_render:
     fadd d0, d0, d6
     fadd d1, d1, d7
 
-    mov     x0, #1
-    ldr x1, =star
-    ldr x2, =star_len
-    mov     w8, #64
-    svc     #0
+    // d2 = 0.0, d3 = 0.0, x5=0
+    ldr d2, =zero
+    ldr d3, =zero
+    mov x5, #0
 
     // x4 += 1
     add x4, x4, 1
