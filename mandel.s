@@ -50,8 +50,8 @@ mandelbrot_loop:
     // d1 = (double)x3 * scale_y + offset_y
     scvtf d0, x4
     scvtf d1, x3
-    fdiv d0, d0, d4
-    fdiv d1, d1, d5
+    fmul d0, d0, d4
+    fmul d1, d1, d5
     fadd d0, d0, d6
     fadd d1, d1, d7
 
