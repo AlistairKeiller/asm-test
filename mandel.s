@@ -5,10 +5,10 @@ space:  .ascii " "
 space_len = . - space
 newline: .ascii "\n"
 newline_len = . - newline
-width = 40
+width = 80
 height = 20
 max_iter = 100
-scale_x: .double 0.1
+scale_x: .double 0.05
 scale_y: .double 0.1
 offset_x: .double -2.0
 offset_y: .double -1.0
