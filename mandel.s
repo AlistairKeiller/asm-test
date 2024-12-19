@@ -10,7 +10,7 @@ height = 20
 max_iter = 100
 scale_x: .double 0.05
 scale_y: .double 0.1
-offset_x: .double -2.0
+offset_x: .double -2.5
 offset_y: .double -1.0
 
 .text
