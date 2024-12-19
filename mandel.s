@@ -120,6 +120,7 @@ mandelbrot_next_line:
 
     b mandelbrot_loop
 
+// putchar('*');
 mandelbrot_plot_star:
     mov     x0, #1
     ldr x1, =star
@@ -128,6 +129,7 @@ mandelbrot_plot_star:
     svc     #0
     b mandelbrot_next_pixel
 
+// putchar(' ');
 mandelbrot_plot_space:
     mov     x0, #1
     ldr x1, =space
