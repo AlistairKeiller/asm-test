@@ -3,22 +3,6 @@ msg:
     .ascii  "Hello, ARM64!\n"
 len = . - msg
 
-fib:
-    mov x3, x0
-    mov x0, 0
-    mov x1, 1
-    mov x2, 0
-fib1:
-    cmp x2, x3
-    beq 1f
-    mov x4, x0
-    mov x0, x1
-    add x1, x4, x1
-    add x2, x2, 1
-    b fib1
-1:
-    ret
-
 .text
 .global _start
 _start:
@@ -37,3 +21,19 @@ _start:
     mov     x0, #0    // status := 0
     mov     w8, #93   // exit is syscall #93
     svc     #0        // make syscall
+
+fib:
+    mov x3, x0
+    mov x0, 0
+    mov x1, 1
+    mov x2, 0
+fib1:
+    cmp x2, x3
+    beq 1f
+    add x4, x0, x1
+    mov x0, x1
+    mov x1, x4
+    add x2, x2, 1
+    b fib1
+1:
+    ret
