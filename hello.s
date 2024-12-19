@@ -6,7 +6,7 @@ len = . - msg
 .text
 .global _start
 _start:
-    // write(1, &msg, len)
+    // write(1, &msg, &len)
     mov     x0, #1         // stdout file descriptor
     ldr     x1, =msg       // address of msg
     ldr     x2, =len       // length of msg
