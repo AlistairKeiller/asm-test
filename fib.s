@@ -8,7 +8,6 @@ _start:
     mov     x0, #10        // Argument for fib(10)
     bl      fib            // Call fib
     mov     x1, x0         // Store result in x1 for printing
-
     // Convert result to string
     ldr     x0, =buffer    // Load buffer address
     bl      int_to_str     // Convert integer in x1 to string
